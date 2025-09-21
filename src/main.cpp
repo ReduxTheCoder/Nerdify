@@ -1,6 +1,5 @@
 # include <string>
 # include <iostream>
-# include <cctype>
 
 bool super = false;
 
@@ -14,8 +13,16 @@ void help() {
 	std::cout << "\t-s --super: add '!11!!!' at the end of the string\n";
 }
 
+std::string lower_chars = "abcdefghijklmnopqrstuvwxyz";
+std::string upper_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
 char upper(char lower) {
-	return static_cast<char>(std::toupper(static_cast<unsigned char>(lower))); // Returns the upper character
+    auto index = lower_chars.find(lower);
+    if (index == std::string::npos) {
+		// If character is not found it's a symbol or a number, ignore it.
+        return lower;
+    }
+    return upper_chars[index];
 }
 
 void nerdify(std::string &str) {
@@ -33,6 +40,7 @@ void nerdify(std::string &str) {
 int main(int argc, char* argv[]) {
 	if (argc < 2) {
 		help();
+		return 0;
 	}
 
 	for (int current_arg = 1; current_arg < argc; current_arg++) {
