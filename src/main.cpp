@@ -5,6 +5,9 @@
 bool super = false;
 
 void help() {
+	
+	// Helper function to print usage of the program
+
 	std::cout << "Usage:\n";
 	std::cout << "Nerdify [options] [string]\n";
 	std::cout << "\t-h --help: print Nerdify documentation\n";
@@ -12,7 +15,7 @@ void help() {
 }
 
 char upper(char lower) {
-	return static_cast<char>(std::toupper(static_cast<unsigned char>(lower)));
+	return static_cast<char>(std::toupper(static_cast<unsigned char>(lower))); // Returns the upper character
 }
 
 void nerdify(std::string &str) {
@@ -33,7 +36,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	for (int current_arg = 1; current_arg < argc; current_arg++) {
-		std::string arg = argv[current_arg]; // create a proper std::string
+		std::string arg = argv[current_arg];
 		if (arg == "-h" || arg == "--help") {
 			help();
 			continue;
@@ -43,8 +46,8 @@ int main(int argc, char* argv[]) {
 			continue;
 		}
 
-		nerdify(arg);             // pass by reference
-		std::cout << arg << "\n"; // print modified string
+		nerdify(arg);
+		std::cout << arg << "\n";
 	}
 
 	return 0;
